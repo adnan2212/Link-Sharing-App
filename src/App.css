@@ -8,14 +8,14 @@
 }
 
 body {
-  /* background: #fafafa; */
+  background: #fafafa;
   min-height: 100vh;
 }
 
 .app {
   width: 100%;
   height: 100%;
-  background: #e5e7eb;
+  /* background: #e5e7eb; */
   padding: 20px 40px;
 }
 
