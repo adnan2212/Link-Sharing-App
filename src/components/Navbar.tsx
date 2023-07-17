@@ -31,7 +31,7 @@ const Navbar = () => {
     );
 
   return (
-    <nav className="flex h-16 w-full list-none items-center justify-between rounded-xl bg-[#fff] px-6 py-10">
+    <nav className="mb-5 flex h-16 w-full list-none items-center justify-between rounded-xl bg-[#fff] px-6 py-10">
       <li className="cursor-pointer">
         <img src={logo} alt="dev-link" className="lg:w-36" />
       </li>
