@@ -20,7 +20,7 @@ const App = () => {
         </Routes>
         <Routes></Routes>
       </div>
-      <div className="px-0 py-0">
+      <div className="">
         <Routes>
           <Route path="preview" element={<Preview />}></Route>
         </Routes>
