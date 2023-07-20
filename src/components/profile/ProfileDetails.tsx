@@ -14,7 +14,7 @@ const ProfileDetails = () => {
       <BasicDetails />
       <div
         className={
-          "flex h-[94px] w-full items-center justify-end rounded-xl border-t border-solid border-t-[#D9D9D9] bg-[white] px-10 py-0 sm:h-[78px] sm:px-4"
+          "flex h-[94px] w-full items-center justify-end border-t border-solid border-t-[#D9D9D9] bg-[white] px-10 py-0 sm:h-[78px] sm:px-4"
         }
       >
         <button

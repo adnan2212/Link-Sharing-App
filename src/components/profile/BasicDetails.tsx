@@ -4,6 +4,7 @@ const BasicDetails = () => {
   return (
     // <fieldset className="mx-auto mb-[115px] mt-0 flex  w-[92%] flex-col justify-center gap-3 rounded-xl bg-[#FAFAFA] px-0 py-5 sm:mb-6 sm:h-auto sm:w-[92%] sm:p-5">
     <fieldset className="mx-auto flex w-[92%] flex-col justify-center gap-3 rounded-xl bg-[#FAFAFA] px-0 py-5 sm:mb-6 sm:h-auto sm:w-[92%] sm:p-5">
+      {/* <fieldset className="mx-auto mb-[115px] mt-0 flex h-52 w-[85%] flex-col justify-center gap-3 rounded-xl bg-neutral-50 px-5 py-0 sm:mb-6 sm:h-auto sm:w-[92%] sm:p-5"> */}
       <Input
         type="text"
         label="First name*"

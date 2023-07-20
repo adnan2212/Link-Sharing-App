@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import smDevlink from "../assets/icons/logo-devlinks-small.svg";
 import lgDevlink from "../assets/icons/logo-devlinks-large.svg";
@@ -32,29 +32,46 @@ const Navbar = () => {
 
   return (
     <nav className="mb-5 flex h-16 w-full list-none items-center justify-between rounded-xl bg-[#fff] px-6 py-10">
-      <li className="cursor-pointer">
-        <img src={logo} alt="dev-link" className="lg:w-36" />
-      </li>
-      <ul className="flex gap-x-10">
-        <NavLink to="/">
-          <li className="cursor-pointer rounded-lg p-2 py-3 opacity-100 hover:bg-[#EFEBFF] active:bg-[#EFEBFF] md:flex md:gap-x-2 md:px-6">
+      <NavLink to="/">
+        <li className="cursor-pointer">
+          <img src={logo} alt="dev-link" className="lg:w-36" />
+        </li>
+      </NavLink>
+
+      <ul className="flex gap-x-4">
+        <NavLink
+          to="/account"
+          className={({ isActive }) => {
+            return isActive
+              ? "rounded-lg bg-[#EFEBFF] text-[#633Cff]"
+              : "text-[#737373]";
+          }}
+        >
+          <li className="cursor-pointer rounded-lg p-2 px-5 py-3 opacity-100 hover:bg-[#EFEBFF] md:flex md:gap-x-2 md:px-6">
             <img src={smLink} alt="link" />
-            <span className="font-semibold text-purple-900">{link}</span>
+            <span className="font-semibold ">{link}</span>
           </li>
         </NavLink>
-        <NavLink to="/profile">
-          <li className="cursor-pointer rounded-lg p-2 py-3 opacity-100 transition duration-300 hover:bg-[#EFEBFF] active:bg-[#EFEBFF] md:flex md:gap-x-2 md:px-6">
+        <NavLink
+          to="/profile"
+          className={({ isActive }) => {
+            return isActive
+              ? "rounded-lg bg-[#EFEBFF] text-[#633cff]"
+              : "text-[#737373]";
+          }}
+        >
+          <li className="cursor-pointer rounded-lg p-2 px-5 py-3 opacity-100 hover:bg-[#EFEBFF] md:flex md:gap-x-2 md:px-6">
             <img src={userIcon} alt="link" />
             <span className="font-semibold">{profile}</span>
           </li>
         </NavLink>
       </ul>
-      <Link
+      <NavLink
         to="/preview"
         className="cursor-pointer rounded-lg border border-[#633cff] p-2 px-4 hover:bg-[#EFEBFF] active:bg-[#EFEBFF]"
       >
         {preview}
-      </Link>
+      </NavLink>
     </nav>
   );
 };

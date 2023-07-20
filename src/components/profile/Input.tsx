@@ -5,14 +5,14 @@ const Input = ({ type, label, name, placeholder, ...rest }) => {
   const handleInvalid = () => {};
 
   return (
-    <fieldset className="flex w-full flex-col items-start justify-between gap-4">
+    <fieldset className="flex w-full flex-col items-start justify-between gap-4 px-5 text-[#737373] sm:p-0 md:flex-row">
       <label className={label} htmlFor={label}>
         {label}
       </label>
-      <div className="relative w-[432px] md:w-full lg:w-[70%]">
+      <div className="relative w-full md:w-[70%]">
         <input
           type={type}
-          //   value={text}
+          //   value={text} w-[432px] md:w-full lg:w-[70%]
           onChange={handleChange}
           onBlur={handleBlur}
           onInvalid={handleInvalid}
