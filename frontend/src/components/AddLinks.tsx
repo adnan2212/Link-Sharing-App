@@ -68,7 +68,7 @@ const AddLinks = () => {
       }
     };
     fetchLinks();
-  }, [token]);
+  }, [token, fetchLinks]);
   const isScrollable = userLinks.length > 0;
   return (
     <div className="h-min w-full rounded-xl bg-[#fff] pt-6 sm:justify-self-center">

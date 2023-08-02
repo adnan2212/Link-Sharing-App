@@ -8,11 +8,11 @@ import useContent from "../../hooks/useContent";
 const PROFILE_URL = "/profile";
 
 const ProfileDetails = () => {
-  const { auth } = useContent();
+  const { auth, setOpenSaveChangesMessage } = useContent();
   const token = auth.accessToken;
   const [loading, setLoading] = useState(false);
   const [userId, setUserId] = useState("");
-  const [profileImage, setProfileImage] = useState(null);
+  const [profileImage, setProfileImage] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -52,6 +52,7 @@ const ProfileDetails = () => {
       });
 
       console.log(response);
+      setOpenSaveChangesMessage(true);
     } catch (error) {
       console.log(error);
     }
@@ -69,7 +70,7 @@ const ProfileDetails = () => {
         console.log("✨fetchUserData", response.data);
         const userData = response.data;
         if (userData) {
-          setProfileImage(userData.profileImage || null);
+          setProfileImage(userData.profileImage || "");
           setFirstName(userData.firstName || "");
           setLastName(userData.lastName || "");
           setEmail(userData.email || "");

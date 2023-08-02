@@ -16,6 +16,8 @@ const LoginForm = () => {
 
   const userRef = useRef();
   const errRef = useRef();
+  const passwordRef = useRef();
+  const errorMessageRef = useRef();
 
   const [email, resetUser, userAttributes] = useInput("email", "");
   const [password, setPassword] = useState("");
@@ -32,6 +34,10 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+
+    if (errorMessageRef.current) {
+      errorMessageRef.current.style.display = "none";
+    }
 
     try {
       const response = await axios.post(
@@ -51,26 +57,44 @@ const LoginForm = () => {
       navigate("/account", { replace: true });
     } catch (err) {
       console.log(err);
-      setErrMsg(err?.response?.data?.message);
       setLoading(false);
-      errRef.current.focus();
+      if (errorMessageRef.current) {
+        errorMessageRef.current.style.display = "block";
+      }
+
+      if (err.response) {
+        setErrMsg(err?.response?.data?.message);
+
+        if (errRef.current) {
+          errRef.current.focus();
+        }
+
+        if (err.response.status === 401) {
+          setErrMsg("Email or password is incorrect");
+        }
+      } else if (err.request) {
+        setErrMsg(
+          "Network Error. Please check your internet connection and try again."
+        );
+      } else {
+        setErrMsg("An error occurred. Please try again later.");
+      }
     }
   };
 
   return (
     <>
       <form className="mb-6 flex flex-col gap-6" onSubmit={handleSubmit}>
-        <p
-          ref={errRef}
-          className={
-            errMsg
-              ? "mb-2 rounded-lg bg-pink-400 p-2 font-bold text-red-600"
-              : "absolute -left-full"
-          }
-          aria-live="assertive"
-        >
-          {errMsg}
-        </p>
+        {errMsg && (
+          <div
+            ref={errRef}
+            className={`mb-2 rounded-md border border-red-500 bg-red-100 p-2 text-red-700 transition-opacity duration-300 ease-in-out`}
+            role="alert"
+            aria-live="assertive"
+          >
+            {errMsg}
+          </div>
+        )}
         <fieldset className="flex w-full flex-col gap-1">
           <label className="text-xs leading-[150%] text-[#333] sm:text-xs">
             Email address
@@ -100,6 +124,7 @@ const LoginForm = () => {
           <div className="relative">
             <input
               type="password"
+              ref={passwordRef}
               onChange={(e) => setPassword(e.target.value)}
               value={password}
               className="h-[48px] w-full rounded-lg border border-solid border-[#D9D9D9] bg-[#fff] px-[48px] leading-[150%] focus:border focus:border-[#633CFF] focus:outline-none focus:ring-1 focus:ring-[#333] focus:ring-opacity-10 focus:ring-offset-0 focus:ring-offset-transparent"
